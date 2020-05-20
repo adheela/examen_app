@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:examen_app/components/choice_button.dart';
 import 'package:examen_app/components/rounded_button.dart';
 import 'package:examen_app/screens/welcome_screen.dart';
+import 'dart:io';
 
 
 FirebaseUser loggedInUser;
@@ -76,139 +77,147 @@ class _QuizScreenState extends State<QuizScreen> {
           body: Container(
             margin: const EdgeInsets.all(10.0),
             alignment: Alignment.topCenter,
-            child: Column(
-              children: <Widget>[
-                Padding(padding: EdgeInsets.all(20.0),),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Row(
-                    mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.all(20.0),),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Row(
+                      mainAxisAlignment:  MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(" Question ${qno + 1} of $length ",
+                          style: TextStyle(
+                            fontSize: 22.0,
+                          ),
+                        ),
+                        Text(" Score : $score",
+                          style: TextStyle(
+                            fontSize: 22.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.all(10.0),),
+
+                  Image.asset("images/${images[qno]}.jpg"),
+
+                  Padding(padding: EdgeInsets.all(10.0),),
+                  Text(
+                    '$que',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  Padding(padding: EdgeInsets.all(10.0),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Text(" Question ${qno + 1} of $length ",
-                        style: TextStyle(
-                          fontSize: 22.0,
+
+                      //button 1
+                      Flexible(
+                        child: Container(
+                          child: ChoiceButton(
+                            colour: Color(0xFFE52883),
+                            onPress: (){
+                              if(widget.quizes['Quiz Questions'][qno]['Answers'][0]['isTrue'].toString() == 'true') {
+                                debugPrint("true");
+                                score++;
+                              }else{
+                                debugPrint("false");
+                              }
+                              upQno();
+                              updateUI(widget.quizes);
+                            },
+                            label: '$ch1',
+                          ),
                         ),
                       ),
-                      Text(" Score : $score",
-                        style: TextStyle(
-                          fontSize: 22.0,
+
+                      Padding(padding: EdgeInsets.all(10.0)),
+
+                      //button 2
+                      Flexible(
+                        child: Container(
+                          child: ChoiceButton(
+                            colour: Color(0xFFE52883),
+                            onPress: (){
+                              if(widget.quizes['Quiz Questions'][qno]['Answers'][1]['isTrue'].toString() == 'true') {
+                                debugPrint("true");
+                                score++;
+                              }else{
+                                debugPrint("false");
+                              }
+                              upQno();
+                              updateUI(widget.quizes);
+                            },
+                            label: '$ch2',
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                Padding(padding: EdgeInsets.all(10.0),),
 
-                Image.asset("images/${images[qno]}.jpg"),
+                  Padding(padding: EdgeInsets.all(10.0)),
 
-                Padding(padding: EdgeInsets.all(10.0),),
-                Text(
-                  '$que',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                Padding(padding: EdgeInsets.all(10.0),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
 
-                    //button 1
-                     Flexible(
-                       child: Container(
-                         child: ChoiceButton(
-                          colour: Color(0xFFE52883),
-                          onPress: (){
-                            if(widget.quizes['Quiz Questions'][qno]['Answers'][0]['isTrue'].toString() == 'true') {
-                              debugPrint("true");
-                              score++;
-                            }else{
-                              debugPrint("false");
-                            }
-                            upQno();
-                            updateUI(widget.quizes);
-                          },
-                          label: '$ch1',
-                         ),
-                       ),
-                     ),
-
-                    Padding(padding: EdgeInsets.all(10.0)),
-
-                    //button 2
-                    Flexible(
-                      child: Container(
-                        child: ChoiceButton(
-                          colour: Color(0xFFE52883),
-                          onPress: (){
-                            if(widget.quizes['Quiz Questions'][qno]['Answers'][1]['isTrue'].toString() == 'true') {
-                              debugPrint("true");
-                              score++;
-                            }else{
-                              debugPrint("false");
-                            }
-                            upQno();
-                            updateUI(widget.quizes);
-                          },
-                          label: '$ch2',
+                      //button 3
+                      Flexible(
+                        child: Container(
+                          child: ChoiceButton(
+                            colour: Color(0xFFE52883),
+                            onPress: (){
+                              if(widget.quizes['Quiz Questions'][qno]['Answers'][2]['isTrue'].toString() == 'true') {
+                                debugPrint("true");
+                                score++;
+                              }else{
+                                debugPrint("false");
+                              }
+                              upQno();
+                              updateUI(widget.quizes);
+                            },
+                            label: '$ch3',
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
 
-                 Padding(padding: EdgeInsets.all(10.0)),
+                      Padding(padding: EdgeInsets.all(10.0)),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-
-                    //button 3
-                    Flexible(
-                      child: Container(
-                        child: ChoiceButton(
-                          colour: Color(0xFFE52883),
-                          onPress: (){
-                            if(widget.quizes['Quiz Questions'][qno]['Answers'][2]['isTrue'].toString() == 'true') {
-                              debugPrint("true");
-                              score++;
-                            }else{
-                              debugPrint("false");
-                            }
-                            upQno();
-                            updateUI(widget.quizes);
-                          },
-                          label: '$ch3',
+                      //button 4
+                      Flexible(
+                        child: Container(
+                          child: ChoiceButton(
+                            colour: Color(0xFFE52883),
+                            onPress: (){
+                              if(widget.quizes['Quiz Questions'][qno]['Answers'][3]['isTrue'].toString() == 'true') {
+                                debugPrint("true");
+                                score++;
+                              }else{
+                                debugPrint("false");
+                              }
+                              upQno();
+                              updateUI(widget.quizes);
+                            },
+                            label: '$ch4',
+                          ),
                         ),
                       ),
-                    ),
+                    ],
+                  ),
+                  Padding(padding: EdgeInsets.all(30.0)),
 
-                    Padding(padding: EdgeInsets.all(10.0)),
-
-                    //button 4
-                    Flexible(
-                      child: Container(
-                        child: ChoiceButton(
-                          colour: Color(0xFFE52883),
-                          onPress: (){
-                            if(widget.quizes['Quiz Questions'][qno]['Answers'][3]['isTrue'].toString() == 'true') {
-                              debugPrint("true");
-                              score++;
-                            }else{
-                              debugPrint("false");
-                            }
-                            upQno();
-                            updateUI(widget.quizes);
-                          },
-                          label: '$ch4',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-
-              ],
+                  RoundedButton(
+                    colour: Colors.red,
+                    onPress: resetQuiz,
+                    label: "Quit",
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -275,6 +284,11 @@ class Summary extends StatelessWidget{
                     Navigator.pushNamed(context, WelcomeScreen.id);
                   },
                   label: "Reset Quiz",
+                ),
+                RoundedButton(
+                  colour: Colors.red,
+                  onPress: () => exit(0),
+                  label: "Exit From App",
                 ),
 
               ],
