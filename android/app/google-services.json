@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "818291524737",
+    "firebase_url": "https://examen-c9d27.firebaseio.com",
+    "project_id": "examen-c9d27",
+    "storage_bucket": "examen-c9d27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818291524737:android:83a83347a8fadeac073980",
+        "android_client_info": {
+          "package_name": "com.adheela.examen_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818291524737-22svf5u7lkbduve6a24ku9v973kol5p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDySXiP19mVEiYiry7Yjtj37eHSIqMOi-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818291524737-22svf5u7lkbduve6a24ku9v973kol5p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
