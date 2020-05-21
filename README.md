@@ -2,6 +2,6 @@
 
 ## New Quiz App
  
- Test your Flutter Knowledge
+ Take a quick test on " examen_app " to test your Flutter Knowledge
 
 
